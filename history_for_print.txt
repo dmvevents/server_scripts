@@ -1,0 +1,683 @@
+    1  nvidia-detector 
+    2  nvidia-smi 
+    3  docker
+    4  sudo snap install docker 
+    5  tensorflow/tensorflow:1.15.5-gpu-py3-jupyter
+    6  docker run --gpus all --rm nvidia/cuda nvidia-smi
+    7  https://www.tensorflow.org/install/docker#gpu_support
+    8  sudo usermod -aG docker watad
+    9  nvidia-smi 
+   10  uname -r
+   11  lsmod | grep apex
+   12  sudo nano /etc/modprobe.d/blacklist-apex.conf
+   13  sudo reboot
+   14  lsmod | grep apex
+   15  echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+   16  password
+   17  echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+   18  password
+   19  echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+   20  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+   21  sudo apt-get update
+   22  sudo apt-get install gasket-dkms libedgetpu1-std
+   23  lspci -nn | grep 089a
+   24  ls /dev/apex_0
+   25  sudo reboot
+   26  ls /dev/apex_0
+   27  sudo sh -c "echo 'SUBSYSTEM==\"apex\", MODE=\"0660\", GROUP=\"apex\"' >> /etc/udev/rules.d/65-apex.rules"
+   28  sudo groupadd apex
+   29  sudo adduser $USER apex
+   30  ls /dev/apex_0
+   31  sudo apt-get install python3-pycoral
+   32  python3 -m pip install --extra-index-url https://google-coral.github.io/py-repo/ pycoral~=2.0
+   33  sudo apt install python3-pip
+   34  python3 -m pip install --extra-index-url https://google-coral.github.io/py-repo/ pycoral~=2.0
+   35  mkdir coral && cd coral
+   36  git clone https://github.com/google-coral/pycoral.git
+   37  cd pycoral
+   38  bash examples/install_requirements.sh classify_image.py
+   39  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+   40  sudo reboot
+   41  ls /dev/apex_0
+   42  sudo modprobe apex
+   43  sudo sh -c "echo 'SUBSYSTEM=="apex", MODE="0660", GROUP="apex"' >> /etc/udev/rules.d/65-apex.rules"
+   44  sudo groupadd apex
+   45  sudo adduser $USER apex
+   46  lspci -nn | grep 089a
+   47  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+   48  cd pycoral
+   49  mkdir coral && cd coral
+   50  cd coral/
+   51  cd pycoral
+   52  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+   53  bash examples/install_requirements.sh model_pipelining_classify_image.py
+   54  python3 examples/model_pipelining_classify_image.py   --models     test_data/pipeline/inception_v3_299_quant_segment_%d_of_2_edgetpu.tflite   --labels test_data/imagenet_labels.txt   --input test_data/parrot.jpg
+   55  bash examples/install_requirements.sh semantic_segmentation.py
+   56  python3 examples/semantic_segmentation.py   --model test_data/deeplabv3_mnv2_pascal_quant_edgetpu.tflite   --input test_data/bird.bmp   --keep_aspect_ratio   --output ${HOME}/segmentation_result.jpg
+   57  ls /dev/apex_0
+   58  mkdir coral && cd coral
+   59  ls
+   60  cd coral/
+   61  cd pycoral/
+   62  python3 examples/semantic_segmentation.py   --model test_data/deeplabv3_mnv2_pascal_quant_edgetpu.tflite   --input test_data/bird.bmp   --keep_aspect_ratio   --output ${HOME}/segmentation_result.jpg
+   63  lspci -nn | grep 089a
+   64  cd ..
+   65  cd ~
+   66  git clone https://github.com/google-coral/libedgetpu
+   67  history
+   68  cd /opt/
+   69  ls
+   70  cd ~ 
+   71  git clone -b master https://github.com/pocoproject/poco.git && cd poco && git checkout 3fc3e5f5b8462f7666952b43381383a79b8b5d92 && mkdir cmake-build && cd cmake-build && cmake .. && cmake --build . --config Release && sudo cmake --build . --target install && sudo ldconfig
+   72  nvidia-smi
+   73  git clone https://github.com/tensorflow/tensorflow.git
+   74  cd tensorflow/
+   75  git checkout b36436b087bd8e8701ef51718179037cccdfc26e
+   76  ./tensorflow/lite/tools/make/download_dependencies.sh 
+   77  ./tensorflow/lite/tools/make/build_aarch64_lib.sh
+   78  sudo ./tensorflow/lite/tools/make/build_aarch64_lib.sh
+   79  sudo  apt-get install g++-aarch64-linux-gnu 
+   80  sudo ./tensorflow/lite/tools/make/build_aarch64_lib.sh
+   81  cp gen/linux_aarch64/lib/libtensorflow-lite.a /usr/local/lib/
+   82  ls
+   83  sudo cp tensorflow/lite/tools/make/gen/linux_aarch64/lib/libtensorflow-lite.a  /usr/local/lib/
+   84  cd ~/tensorflow/tensorflow/lite/tools/make/downloads/flatbuffers
+   85  mkdir build
+   86  cd build
+   87  cmake ..
+   88  make -j4
+   89  make install
+   90  cd ~
+   91  cd ~/tensorflow/tensorflow/lite/tools/make/downloads/flatbuffers
+   92  mkdir build
+   93  cd build
+   94  cmake ..
+   95  make -j4
+   96  make install
+   97  cd ~
+   98  apt remove --purge cmake
+   99  hash -r
+  100  apt install build-essential libssl-dev
+  101  cd ~ 
+  102  wget https://github.com/Kitware/CMake/releases/download/v3.16.5/cmake-3.16.5.tar.gz
+  103  tar -zxvf cmake-3.16.5.tar.gz
+  104  cd cmake-3.16.5
+  105  ./bootstrap
+  106  make 
+  107  make install 
+  108  cd ~
+  109  rm -rf cmake-3.16.5
+  110  sudo apt-get install openssl openssl-dev
+  111  sudo apt-get install libssl-dev
+  112  apt remove --purge cmake
+  113  hash -r
+  114  apt install build-essential libssl-dev
+  115  cd ~ 
+  116  wget https://github.com/Kitware/CMake/releases/download/v3.16.5/cmake-3.16.5.tar.gz
+  117  tar -zxvf cmake-3.16.5.tar.gz
+  118  cd cmake-3.16.5
+  119  ./bootstrap
+  120  apt remove --purge cmake
+  121  hash -r
+  122  apt install build-essential libssl-dev
+  123  cd ~ 
+  124  wget https://github.com/Kitware/CMake/releases/download/v3.16.5/cmake-3.16.5.tar.gz
+  125  tar -zxvf cmake-3.16.5.tar.gz
+  126  cd cmake-3.16.5
+  127  ./bootstrap
+  128  make 
+  129  make install 
+  130  sudo make install 
+  131  cd ~/tensorflow/tensorflow/lite/tools/make/downloads/flatbuffers
+  132  mkdir build
+  133  cd build
+  134  cmake ..
+  135  make -j4
+  136  make install
+  137  ldconfig
+  138  sudo ldconfig
+  139  sudo make install
+  140  sudo ldconfig
+  141  cd ~
+  142  git clone https://github.com/abseil/abseil-cpp.git
+  143  cd abseil-cpp
+  144  git checkout5dd240724366295970c613ed23d0092bcf392f18
+  145  mkdir build && cd build
+  146  cmake ..
+  147  make && sudo make install
+  148  apt-get install libedgetpu-dev
+  149  sudo apt-get install libedgetpu-dev
+  150  sudo modprobe apex
+  151  sudo sh -c "echo 'SUBSYSTEM=="apex", MODE="0660", GROUP="apex"' >> /etc/udev/rules.d/65-apex.rules"
+  152  sudo groupadd apex
+  153  cd coral/pycoral/
+  154  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+  155  cp -rf tensorflow/ tensorflow_src
+  156  cp -rf tensorflow/ /tensorflow_src
+  157  sudo cp -rf tensorflow/ /tensorflow_src
+  158  rm -rf tensorflow_src/
+  159  git clone https://github.com/whoshuu/cpr.git
+  160  cd cpr 
+  161  git submodule update --init --recursive
+  162  mkdir -p build && cd build
+  163  cmake -DCMAKE_BUILD_TYPE=Debug ..
+  164  make -j
+  165  sudo make install
+  166  sudo ln -sf /usr/src/server/opt/cpr/build/lib/libcurl-d.so /usr/local/lib/
+  167  sudo ldconfig
+  168  sudo apt-get install install libcurl-dev
+  169  sudo apt-get  install libcurl-dev
+  170  sudo apt-get install -y libcurl-dev
+  171  apt-get install libcurl4-openssl-dev
+  172  sudo apt-get install libcurl4-openssl-dev
+  173  sudo ldconfig
+  174  rm /usr/local/lib/libtensorflow-lite.a 
+  175  sudo rm /usr/local/lib/libtensorflow-lite.a 
+  176  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  177  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  178  kubectl version --client
+  179  ## third-party libraries
+  180  apt-get install -y build-essential cmake git unzip pkg-config
+  181  apt-get install -y libjpeg-dev libpng-dev libtiff-dev
+  182  apt-get install -y libavcodec-dev libavformat-dev libswscale-dev
+  183  apt-get install -y libgtk2.0-dev libcanberra-gtk*
+  184  apt-get install -y python3-dev python3-numpy python3-pip
+  185  apt-get install -y libxvidcore-dev libx264-dev libgtk-3-dev
+  186  apt-get install -y libtbb2 libtbb-dev libdc1394-22-dev
+  187  apt-get install -y libv4l-dev v4l-utils
+  188  apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+  189  apt-get install -y libavresample-dev libvorbis-dev libxine2-dev
+  190  apt-get install -y libfaac-dev libmp3lame-dev libtheora-dev
+  191  apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
+  192  apt-get install -y libopenblas-dev libatlas-base-dev libblas-dev
+  193  apt-get install -y liblapack-dev libeigen3-dev gfortran
+  194  apt-get install -y libhdf5-dev protobuf-compiler
+  195  apt-get install -y libprotobuf-dev libgoogle-glog-dev libgflags-dev
+  196  apt-get install -y qt5-default
+  197  sudo sh install_cv.sh 
+  198  wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+  199  sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+  200  wget https://developer.download.nvidia.com/compute/cuda/11.6.1/local_installers/cuda-repo-ubuntu1804-11-6-local_11.6.1-510.47.03-1_amd64.deb
+  201  cd ~/opencv
+  202  mkdir build
+  203  cd build
+  204  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D WITH_CUBLAS=1 -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_EXAMPLES=OFF ..
+  205  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D WITH_CUBLAS=1 -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_EXAMPLES=OFF ..
+  206  nproc
+  207  make -j80
+  208  echo "Create a virtual environtment for the python binding module"
+  209  pip install virtualenv virtualenvwrapper
+  210  rm -rf ~/.cache/pip
+  211  echo "Edit ~/.bashrc"
+  212  export WORKON_HOME=$HOME/.virtualenvs
+  213  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  214  source /usr/local/bin/virtualenvwrapper.sh
+  215  mkvirtualenv cv -p python3
+  216  pip install numpy
+  217  nano /home/watad/opencv/build/CMakeFiles/CMakeError.log"
+  218  nano /home/watad/opencv/build/CMakeFiles/CMakeError.log
+  219  sudo apt update && sudo apt install -y cmake g++ wget unzip
+  220  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D WITH_CUBLAS=1 -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_EXAMPLES=OFF ..
+  221  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D WITH_CUBLAS=1 -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF \ 
+  222  -D BUILD_JAVA=OFF \
+  223  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D WITH_CUBLAS=1 -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  224  cmake clean 
+  225  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  226  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  227  cmake clean
+  228  make clean
+  229  cd ..
+  230  rm -rf build/
+  231  mk
+  232  sudo rm -rf build/
+  233  mkdir build 
+  234  ls
+  235  cd ..
+  236  chmod -R 777 opencv
+  237  sudo chmod -R 777 opencv
+  238  cd opencv
+  239  mkdir build
+  240  cd build/
+  241  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  242  pip install numpypip install numpy
+  243  sudo apt install python-pip
+  244  pip install numpy
+  245  sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  246  cd ..
+  247  rm -rf build/
+  248  sudo rm -rf build/
+  249  make build
+  250  mkdir build
+  251  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  252  cd build/
+  253  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  254  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF \
+  255  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  256  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_PYTHON_EXAMPLES=OFF -D WITH_PROTOBUF=OFF -D INSTALL_C_EXAMPLES=OFF -D WITH_TBB=ON -D WITH_CUDA=OFF -D BUILD_opencv_cudacodec=OFF -D WITH_V4L=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_GSTREAMER=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_PC_FILE_NAME=opencv.pc -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=/home/watad/opencv_contrib/modules -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_JAVA=OFF -D BUILD_EXAMPLES=OFF ..
+  257  make -j80
+  258  sudo make install
+  259  sudo ldconfig
+  260  sudo make clean
+  261  sudo apt-get update
+  262  sudo apt install qtcreator -y
+  263  git checkout 48c3bae94a8b324525b45f157d638dfd4e8c3be1
+  264  ./tensorflow/lite/tools/make/download_dependencies.sh
+  265  ./tensorflow/lite/tools/make/build_lib.sh 
+  266  sudo make install 
+  267  sudo ldconfig
+  268  git clone https://github.com/tensorflow/tensorflow.git tensorflow_src
+  269  mkdir tflite_build
+  270  cd tflite_build
+  271  cmake ../tensorflow_src/tensorflow/lite
+  272  cmake --build . -j80
+  273  ls
+  274  cd /
+  275  ls
+  276  sudo rm -rf tensorflow_src/
+  277  cd ~
+  278  cp -rf tensorflow_src/ /
+  279  sudo cp -rf tensorflow_src/ /
+  280  sudo modprobe apex
+  281  sudo sh -c "echo 'SUBSYSTEM=="apex", MODE="0660", GROUP="apex"' >> /etc/udev/rules.d/65-apex.rules"
+  282  ls /dev/apex_0
+  283  lspci -nn | grep 089a
+  284  lsmod | grep apex
+  285  sudo modprobe apex
+  286  kubectl
+  287  sudo apt-get install caffeine
+  288  sudo apt install python3 python3-dev python3-jinja2 python3-psutil python3-setuptools hddtemp python3-pip lm-sensors -y
+  289  sudo pip3 install glances
+  290  glances --version
+  291  glances
+  292  top
+  293  ifcondig
+  294  ifconfig
+  295  sudo apt install net-tools
+  296  mkdir tmp 
+  297  cd tmp 
+  298  mv ~/Downloads/Anaconda3-2021.11-Linux-x86_64.sh .
+  299  bash Anaconda3-2021.11-Linux-x86_64.sh 
+  300  conda create -n tensorflow1.15 python=3.5
+  301  conda activate tensorflow1.15
+  302  conda install cudatoolkit=10.0
+  303  conda install cudnn=7.3.1
+  304  cd ..
+  305  nano create_tf_1_15_gpu.sh
+  306  git status
+  307  conda install gh --channel conda-forge
+  308  gh
+  309  gh auth
+  310  gh repo clone NeumannAI/wt-sadara-vision
+  311  ls
+  312  gh auth login
+  313  gh repo clone NeumannAI/wt-sadara-vision
+  314  ssh-keygen -t ed25519 -C "dmvevents@gmail.com"
+  315  eval "$(ssh-agent -s)"
+  316  ssh-add ~/.ssh/git
+  317  cat ~/.ssh/git.pub 
+  318  git branch a100
+  319  git status
+  320  git checkout a100
+  321  git status
+  322  git add .
+  323  git commit -m "A100 Edits"
+  324  git config --global user.email "dmvevents@gmail.com"
+  325  git config --global user.name "Your Name"
+  326  git config --global user.name "Anton A"
+  327  git commit -m "A100 Edits"
+  328  git push 
+  329  git push --set-upstream origin a100
+  330  git add .
+  331  git commit -m "Scripts"
+  332  git push 
+  333  mv -r /home/watad/abseil-cpp
+  334  /home/watad/cmake-3.16.5
+  335  /home/watad/coral
+  336  /home/watad/cpr
+  337  /home/watad/libedgetpu
+  338  /home/watad/opencv
+  339  /home/watad/opencv_contrib
+  340  /home/watad/poco
+  341  mv -rf '/home/watad/abseil-cpp' '/home/watad/cmake-3.16.5' '/home/watad/coral' '/home/watad/cpr' '/home/watad/libedgetpu' '/home/watad/opencv' '/home/watad/opencv_contrib' '/home/watad/poco' '/home/watad/tensorflow_src' /opt/
+  342  sudo mv -f '/home/watad/abseil-cpp' '/home/watad/cmake-3.16.5' '/home/watad/coral' '/home/watad/cpr' '/home/watad/libedgetpu' '/home/watad/opencv' '/home/watad/opencv_contrib' '/home/watad/poco' '/home/watad/tensorflow_src' /opt/
+  343  history 
+  344  cd ~
+  345  sudo mv -r /opt/coral/ .
+  346  sudo mv -f /opt/coral/ .
+  347  cd coral/pycoral/
+  348  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jp
+  349  conda deactivate
+  350  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jp
+  351  cd ~
+  352  ls
+  353  sh asic.sh 
+  354  cd coral/pycoral/
+  355  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jp
+  356  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jp
+  357  bash examples/install_requirements.sh classify_image.py
+  358  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+  359  nano examples/classify_image.py 
+  360  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg --count 1000
+  361  bash examples/install_requirements.sh detect_image.py
+  362  python3 examples/detect_image.py   --model test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite   --labels test_data/coco_labels.txt   --input test_data/grace_hopper.bmp   --output ${HOME}/grace_hopper_processed.bmp
+  363  python3 examples/detect_image.py   --model test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite   --labels test_data/coco_labels.txt   --input test_data/grace_hopper.bmp   --output ${HOME}/grace_hopper_processed.bmp --count 1000
+  364  bash examples/install_requirements.sh small_object_detection.py
+  365  python3 examples/small_object_detection.py   --model test_data/ssd_mobilenet_v2_coco_quant_no_nms_edgetpu.tflite   --label test_data/coco_labels.txt   --input test_data/kite_and_cold.jpg   --tile_size 1352x900,500x500,250x250   --tile_overlap 50   --score_threshold 0.5   --output ${HOME}/object_detection_results.jpg
+  366  sh /home/watad/asic.sh
+  367  python3 examples/small_object_detection.py   --model test_data/ssd_mobilenet_v2_coco_quant_no_nms_edgetpu.tflite   --label test_data/coco_labels.txt   --input test_data/kite_and_cold.jpg   --tile_size 1352x900,500x500,250x250   --tile_overlap 50   --score_threshold 0.5   --output ${HOME}/object_detection_results.jpg
+  368  python3 examples/detect_image.py   --model test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite   --labels test_data/coco_labels.txt   --input test_data/grace_hopper.bmp   --output ${HOME}/grace_hopper_processed.bmp --count 1000
+  369  sudo sh /home/watad/asic.sh
+  370  python3 examples/small_object_detection.py   --model test_data/ssd_mobilenet_v2_coco_quant_no_nms_edgetpu.tflite   --label test_data/coco_labels.txt   --input test_data/kite_and_cold.jpg   --tile_size 1352x900,500x500,250x250   --tile_overlap 50   --score_threshold 0.5   --output ${HOME}/object_detection_results.jpg
+  371  bash examples/install_requirements.sh model_pipelining_classify_image.py
+  372  python3 examples/model_pipelining_classify_image.py   --models     test_data/pipeline/inception_v3_299_quant_segment_%d_of_2_edgetpu.tflite   --labels test_data/imagenet_labels.txt   --input test_data/parrot.jpg
+  373  sudo sh /home/watad/asic.sh
+  374  python3 examples/model_pipelining_classify_image.py   --models     test_data/pipeline/inception_v3_299_quant_segment_%d_of_2_edgetpu.tflite   --labels test_data/imagenet_labels.txt   --input test_data/parrot.jpg
+  375  python3 examples/model_pipelining_classify_image.py   --models     test_data/pipeline/inception_v3_299_quant_segment_%d_of_2_edgetpu.tflite   --labels test_data/imagenet_labels.txt   --input test_data/parrot.jpg --count 1000
+  376  python3 examples/small_object_detection.py   --model test_data/ssd_mobilenet_v2_coco_quant_no_nms_edgetpu.tflite   --label test_data/coco_labels.txt   --input test_data/kite_and_cold.jpg   --tile_size 1352x900,500x500,250x250   --tile_overlap 50   --score_threshold 0.5   --output ${HOME}/object_detection_results.jpg
+  377  gh
+  378  gh list
+  379  gh repo list
+  380  gh pull tf-obj-det
+  381  gh repo clone dmvevents/tf-obj-det
+  382  conda activate tf-1.15
+  383  cd /home/watad/github/$PROJECT_NAME/models/research/
+  384  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train \
+  385  PROJECT_NAME='tf-det-wb-v1.0'
+  386  cd /home/watad/github/$PROJECT_NAME/models/research/
+  387  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train \
+  388  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/! cat /home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  389  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  390  pip install numpy==1.19.5
+  391  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  392  conda create -n tensorflow1.15 python=3.5
+  393  conda activate tensorflow1.15
+  394  python
+  395  conda install cudatoolkit=10.0
+  396  conda install cudnn=7.3.1
+  397  pip3 install tensorflow-gpu==1.15
+  398  python -c
+  399  python -v
+  400  python --version
+  401  pip3 install tensorflow-gpu==1.15
+  402  conda deactivate 
+  403  conda env remove -n tensorflow1.15
+  404  nano
+  405  nano create_tf_1_15_gpu.sh 
+  406  sh create_tf_1_15_gpu.sh 
+  407  conda env remove -n tensorflow1.15
+  408  nano create_tf_1_15_gpu.sh 
+  409  sh create_tf_1_15_gpu.sh 
+  410  nano create_tf_1_15_gpu.sh 
+  411  sh create_tf_1_15_gpu.sh 
+  412  conda create -n tensorflow1.15 python=3.7 -y
+  413  conda activate tensorflow1.15
+  414  conda install cudatoolkit=10.0 -y
+  415  conda install cudnn=7.3.1 -y
+  416  python --version
+  417  pip3 install tensorflow-gpu==1.15 
+  418  conda deactivate 
+  419  conda install -c conda-forge notebook
+  420  conda install -c conda-forge nb_conda_kernels
+  421  conda install -c conda-forge jupyterlab
+  422  conda install -c conda-forge nb_conda_kernels
+  423  conda install pip
+  424  conda install -c conda-forge nb_conda_kernels
+  425  conda install -c conda-forge jupyter_contrib_nbextensions
+  426  conda create -n tf-1.15 tensorflow-gpu==1.15 pip ipykernel
+  427  conda env remove -n tensorflow1.15
+  428  conda activate tf-1.15
+  429  conda install cudatoolkit=10.0 -y
+  430  conda install cudnn=7.3.1 -y
+  431  python 
+  432  jupyter lab
+  433  jupyter labs
+  434  conda install -c conda-forge jupyterlab
+  435  jupyter lab
+  436  conda install -c conda-forge nb_conda_kernels
+  437  conda install -c conda-forge jupyter_contrib_nbextensions
+  438  gh
+  439  gh repo clone dmvevents/tf-obj-det
+  440  jupyter lab
+  441  sudo jupyter lab
+  442  jupyter lab
+  443  pwd
+  444  %cd $project_dir
+  445  ! pip install tf_slim
+  446  sudo apt-get install protobuf-compiler
+  447  cd github/tf-det-wb-v1.0/
+  448  wget https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10/master/training/labelmap.pbtxt
+  449  conda activate tf-1.15
+  450  tensorboard --logdir /home/watad/github/tf-det-wb-v1.0/train --host 0.0.0.0 --port 6006 
+  451  cd ~
+  452  cd anaconda3/envs/tf-1.15/lib/
+  453  ls
+  454  cd ..
+  455  ls
+  456  cd bin/
+  457  ls
+  458  nvidia-smi 
+  459  which ptxas
+  460  sudo apt-get install locate
+  461  conda activate tf-1.15
+  462  jupyter lab
+  463  sudo updatedb
+  464  locate cuda
+  465  locate toolkit
+  466  locate toolkit | grep cuda
+  467  export XLA_FLAGS=--xla_gpu_cuda_data_dir=/home/watad/anaconda3/pkgs/cudatoolkit-10.0.130-0/
+  468  sudo apt install cuda=10.0.130-1
+  469  cd ~
+  470  mkdir tmp
+  471  cd tmp/
+  472  wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+  473  sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub && sudo apt update
+  474  sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+  475  sudo apt install cuda=10.0.130-1
+  476  sudo apt update
+  477  sudo apt install cuda=10.0.130-1
+  478  wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+  479  sudo dpkg -i nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+  480  wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+  481  sudo dpkg -i nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+  482  sudo apt update
+  483  sudo apt install -y libcudnn7 libcudnn7-dev libnccl2 libc-ares-dev
+  484  sudo apt autoremove
+  485  echo 'export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}' >> ~/.bashrc
+  486  PROJECT_NAME='tf-det-wb-v1.0'
+  487  cd /home/watad/github/$PROJECT_NAME/models/research/
+  488  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  489  conda activate tf-1.15
+  490  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  491  python
+  492  python3 -c 'import tensorflow as tf; print(tf.__version__)'  # for Python 3
+  493  echo $XLA_FLAGS
+  494  locate ptxas
+  495  cd ~
+  496  wget https://gist.githubusercontent.com/bogdan-kulynych/f64eb148eeef9696c70d485a76e42c3a/raw/9f71fccdc0e75fe640a4501327d42e80abcf8406/install-cuda-10-bionic.sh
+  497  nano install-cuda-10-bionic.sh 
+  498  jupyter lab
+  499  glances
+  500  pip install --user 'glances[action,browser,cloud,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi]'
+  501  conda deactive
+  502  conda deactivate
+  503  pip install --user 'glances[action,browser,cloud,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi]'
+  504  history | grep glances
+  505  sudo pip3 install - 'glances[action,browser,cloud,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi]'
+  506  sudo pip3 install  'glances[action,browser,cloud,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi]'
+  507  glances
+  508  conda activate tf-1.15
+  509  PROJECT_NAME='tf-det-wb-v1.0'
+  510  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  511  sudo reboot
+  512  sudo apt install gnome-tweaks
+  513  sudo apt install gnome-shell-extensions
+  514  history | grep delete
+  515  history 
+  516  conda env remove -n tensorflow1.15
+  517  conda env remove -n tf-1.15
+  518  conda create -n tf-1.15 tensorflow-gpu==1.15 pip ipykernel jupyterlab nb_conda_kernels jupyter_contrib_nbextensions pip
+  519  conda create -n tf-1.15 tensorflow-gpu==1.15 pip ipykernel jupyterlab nb_conda_kernels  pip
+  520  conda activate tf-1.15
+  521  jupyter labs github/
+  522  cd github/
+  523  jupyter labs
+  524  jupyter labs=
+  525  jupyter lab
+  526  cd github/
+  527  jupyter lab
+  528  conda activate tf-1.15
+  529  PROJECT_NAME='tf-det-wb-v1.0'
+  530  cd /home/watad/github/$PROJECT_NAME/models/research/
+  531  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  532  protoc --python_out=. ./object_detection/protos/fpn.proto
+  533  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  534  protoc object_detection/protos/*.proto --python_out=.
+  535  python -m pip install .
+  536  python object_detection/builders/model_builder_test.py
+  537  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  538  pip install numpy==1.19.5
+  539  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  540  python object_detection/builders/model_builder_test.py
+  541  conda activate tf-1.15
+  542  python object_detection/builders/model_builder_test.py
+  543  python 
+  544  export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+  545  python object_detection/builders/model_builder_test.py
+  546  nano object_detection/builders/model_builder_test.py
+  547  nano object_detection/builders/model_builder_tf1_test.py 
+  548  python  object_detection/builders/model_builder_tf1_test.py 
+  549  python  object_detection/builders/model_builder_tf2_test.py 
+  550  nvcc --help |grep compute_80
+  551  jupyter lab
+  552  echo $LD_LIBRARY_PATH
+  553  echo$LD_LIBRARY_PATH
+  554  nano ~/.bashrc 
+  555  conda env remove -n tf-2.0
+  556  tensorboard --logdir /home/watad/github/tf-det-wb-v1.0/train --host 0.0.0.0 --port 6006 
+  557  conda activate tf-1.15
+  558  tensorboard --logdir /home/watad/github/tf-det-wb-v1.0/train --host 0.0.0.0 --port 6006 
+  559  nvidia-smi 
+  560  glances
+  561  dpkg --list
+  562  dpkg --list | grep cuda
+  563  dpkg --list | grep nvidia
+  564  dpkg --list | grep cublas
+  565  sudo apt --purge remove "cublas*" "cuda*"
+  566  sudo apt uninstall -y libcudnn7 libcudnn7-dev libnccl2 libc-ares-dev
+  567  sudo apt remove -y libcudnn7 libcudnn7-dev libnccl2 libc-ares-dev
+  568  sudo apt autoremove
+  569  dpkg --list | grep nvidia
+  570  conda create -n tf-2.0 tensorflow-gpu pip ipykernel jupyterlab nb_conda_kernels  pip
+  571  conda env remove -n tf-2.0
+  572  conda create -n tf-1.15 python=3.8 tensorflow-gpu==1.15 pip ipykernel jupyterlab nb_conda_kernels  pip
+  573  conda create -n tf-2.0  python=3.8 tensorflow-gpu pip ipykernel jupyterlab nb_conda_kernels pip
+  574  conda activate tf-2.0
+  575  conda install -c conda-forge cudatoolkit=11.1.0
+  576  conda env remove -n tf-2.0
+  577  deactivate
+  578  conda deactivate
+  579  conda env remove -n tf-2.0
+  580  conda create -n tf-2.0  python=3.8 tensorflow-gpu pip ipykernel jupyterlab nb_conda_kernels pip cudatoolkit=11.1.0
+  581  conda create -n tf-2.0  python=3.8 tensorflow-gpu pip ipykernel jupyterlab nb_conda_kernels pip cudatoolkit=11.1
+  582  conda create -n tf-2.0  python=3.8 tensorflow-gpu pip ipykernel jupyterlab nb_conda_kernels pip cudatoolkit=11.1 -c conda-forge
+  583  conda activate tf-2.0
+  584  PROJECT_NAME='tf-det-wb-v1.0'
+  585  cd /home/watad/github/$PROJECT_NAME/models/research/
+  586  deactivateexport PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+  587  export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+  588  protoc object_detection/protos/*.proto --python_out=.
+  589  python object_detection/builders/model_builder_test.py
+  590  pip install tf_slim
+  591  python object_detection/builders/model_builder_test.py
+  592  pip install tensorflow.io
+  593  python object_detection/builders/model_builder_test.py
+  594  pip install matplotlib
+  595  python object_detection/builders/model_builder_test.py
+  596  pip install tf-models-official
+  597  python object_detection/builders/model_builder_test.py
+  598  history 
+  599  python object_detection/builders/model_builder_test.py
+  600  export LD_LIBRARY_PATH="$CONDA_PREFIX/lib"
+  601  python object_detection/builders/model_builder_test.py
+  602  python object_detection/builders/model_builder_tf2_test.py 
+  603  python3 object_detection/model_main_tf2.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  604  pip install lvis
+  605  python3 object_detection/model_main_tf2.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  606  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  607  export PYTHONPATH=$PYTHONPATH:pwd:pwd/slim
+  608  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  609  conda deactive
+  610  conda deactivate
+  611  conda create -n tf-1.15 python=3.7 pip ipykernel jupyterlab nb_conda_kernels jupyter_contrib_nbextensions pip
+  612  conda create -n tf-1.15 python=3.7 pip ipykernel jupyterlab nb_conda_kernels jupyter_contrib_nbextensions pip -c conda-forge
+  613  conda activate tf-1.15
+  614  pip install nvidia-pyindex
+  615  pip install nvidia-tensorflow[horovod]
+  616  pip install nvidia-tensorflow
+  617  pip install nvidia-pyindex
+  618  conda deactivate
+  619  conda create -n tf-1.15 python=3.8 pip ipykernel jupyterlab nb_conda_kernels jupyter_contrib_nbextensions pip -c conda-forge
+  620  pip install nvidia-pyindex
+  621  pip install nvidia-tensorflow[horovod]
+  622  pip install nvidia-tensorboard==1.15
+  623  export PYTHONPATH=$PYTHONPATH:pwd:pwd/slim
+  624  python object_detection/builders/model_builder_test.py
+  625  pip install tf_slim
+  626  python object_detection/builders/model_builder_test.py
+  627  pip install scipy
+  628  python object_detection/builders/model_builder_test.py
+  629  pip install matplotlib
+  630  python object_detection/builders/model_builder_test.py
+  631  python object_detection/builders/model_builder_tf1_test.py 
+  632  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  633  protoc object_detection/protos/*.proto --python_out=.
+  634  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  635  pip install pycocotools
+  636  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  637  pip install scipy
+  638  pip install lvis
+  639  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  640  nvidia-smi 
+  641  locate cuda
+  642  cd /usr/local/cuda
+  643  /usr/local/cuda-10.0
+  644  sudo updatedb
+  645  locate cuda
+  646  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  647  version libcublasLt.so.11 not defined in file libcublasLt.so.11 with link time reference; LD_LIBRARY_PATH:
+  648  nano object_detection/model_main.py 
+  649  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  650  nano object_detection/model_main.py 
+  651  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  652  nano object_detection/model_main.py 
+  653  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  654  nano object_detection/model_main.py 
+  655  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  656  conda deactivate
+  657  python3 coral_cts.py
+  658  croc
+  659  curl https://getcroc.schollz.com | bash
+  660  croc cts.txt 
+  661  la
+  662  ls | grep .sh
+  663  sh asic.sh 
+  664  cd coral/pycoral/
+  665  cd examples/
+  666  python3 object_detection/model_main.py     --logtostderr=true     --model_dir=/home/watad/github/$PROJECT_NAME/train     --pipeline_config_path=/home/watad/github/$PROJECT_NAME/pretrained_model/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03/pipeline.config
+  667  ls
+  668  cd ..
+  669  ls
+  670  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jp
+  671  history | grep conda
+  672  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jp
+  673  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+  674  history | grep pycoral
+  675  python3 -m pip install --extra-index-url https://google-coral.github.io/py-repo/ pycoral~=2.0
+  676  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+  677  sudo add-apt-repository -r ppa:webkit-team/ppa && sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
+  678  conda deactivate
+  679  python3 examples/classify_image.py --model test_data/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --labels test_data/inat_bird_labels.txt --input test_data/parrot.jpg
+  680  sudo apt install linux-cpupower
+  681  sudo cpupower frequency-set --governor performance
+  682  cd server_scripts/
+  683  history > history_for_print.txt
